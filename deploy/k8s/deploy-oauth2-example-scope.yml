@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-oauth2-svc
+  labels:
+    app: spring-oauth2-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8888
+    nodePort: 30010
+    name: angular-spring
+  selector:
+    app: spring-oauth2-svc
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: spring-sts
+spec:
+  serviceName: "spring-oauth2-svc"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-oauth2-svc
+  template:
+    metadata:
+      labels:
+        app: spring-oauth2-svc
+    spec:
+      containers:
+      - name: spring-oauth2-svc
+        image: dokeryelmariki/keycloak-backend-oauth2:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8888
+          name: spring-sts
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "500Mi"
+        envFrom:
+          - configMapRef:
+              name: special-config
+        

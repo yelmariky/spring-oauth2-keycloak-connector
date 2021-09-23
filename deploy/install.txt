@@ -1,0 +1,16 @@
+helm keycloak
+##helm install ingress nginx-stable/nginx-ingres
+k apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.2/deploy/static/provider/cloud/deploy.yaml
+helm upgrade -f keycloak.values -f keycloak-NodePort.values keycloak-latest codecentric/keycloak
+
+https://www.michaelrose.dev/posts/k8s-ingress-docker-desktop/
+
+https://github.com/jonek/angular-oidc-client-keycloak-example
+https://medium.com/@kamleshbadgujar00/integrating-angular-application-with-keycloak-3-3-8aee940897e
+
+keycloak: admin/younes
+helm install -f keycloak-1.values keycloak-latest codecentric/keycloak 
+docker build
+k apply -f ConfigMapk8s.yaml
+k apply -f deploy-oauth2-example-scope.yml
+k apply -f ingress-angular-keycloak.yml

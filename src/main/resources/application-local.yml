@@ -1,0 +1,36 @@
+rest:
+    security:
+        issuer-uri: http://localhost/auth/realms/oauth2
+        enabled: true
+        api-matcher: /api/**
+        cors:
+            allowed-headers: '*'
+            allowed-methods: GET,POST,PUT,PATCH,DELETE,OPTIONS
+            allowed-origins: '*'
+            max-age: 3600  
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${rest.security.issuer-uri}
+          jwk-set-uri: ${rest.security.issuer-uri}/protocol/openid-connect/certs
+ 
+security:
+    oauth2:
+        resource:
+            id: spring-oauth2
+            jwt:
+              key-value: |-
+                    -----BEGIN PUBLIC KEY-----
+                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtV/uBrWqW+vbbIkovulSu+MwHcXtfQqR30GnbBEAp0/hQZMViZDH8Xa2T+0qTs91jhRqjU8VO0okoqDVsT7iLh7TZv6E67JO5OW5SdPfuCqhFNPUyc8YNLoSEMUA+HBbgXYIK58j5F/9n8NcqBQK9EZwdsc45mkWnLaYioQUDPn70cpwoHkvqKhr2rdWh0S/NFVT4LxJAmYm6GybpfkV0nuSSLq4MYh73czobNYMBQ1rGbySCZ9soW+BRVlbzI9MJWKAusYJmf4uR7xcsQFk+pgR1jQ4J/M9MzAwlWfJTVwvSQCtWeq5HsfOkD0kQN53WKIXDOdvvcB0UJDwHzyyfQIDAQAB
+                    -----END PUBLIC KEY-----
+            token-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/token/introspect
+            user-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/userinfo  
+        client:
+            access-token-uri: ${rest.security.issuer-uri}/protocol/openid-connect/token
+            user-authorization-uri: ${rest.security.issuer-uri}/protocol/openid-connect/auth
+            client-id: spring-oauth2
+            client-secret: 0ee00f3d-421e-4a61-97c7-4e03531730d6
+            grant-type: client_credentials
+            scope: openid

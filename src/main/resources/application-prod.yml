@@ -1,0 +1,25 @@
+rest:
+    security:
+        issuer-uri: ${ISSUER_URI}/${REALM_NAME}
+        enabled: true
+        api-matcher: /api/**
+        cors:
+            allowed-headers: '*'
+            allowed-methods: GET,POST,PUT,PATCH,DELETE,OPTIONS
+            allowed-origins: '*'
+            max-age: 3600   
+security:
+    oauth2:
+        resource:
+            id: ${CLIENT-ID:xxxxx}
+            jwt:
+              key-value: ${ALGORITHME_RSA256_KEYCLOAK}
+            token-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/token/introspect
+            user-info-uri: ${rest.security.issuer-uri}/protocol/openid-connect/userinfo
+        client:
+            access-token-uri: ${rest.security.issuer-uri}/protocol/openid-connect/token
+            user-authorization-uri: ${rest.security.issuer-uri}/protocol/openid-connect/auth
+            client-id: ${CLIENT-ID:xxxxx}
+            client-secret: ${APP_SECRET:xxxx}
+            grant-type: client_credentials
+            scope: openid

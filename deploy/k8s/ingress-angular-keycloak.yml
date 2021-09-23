@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-spring-oauth2-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /api
+          backend:
+            serviceName: spring-oauth2-svc
+            servicePort: 80
+        - path: /auth
+          backend:
+            serviceName: kaycloak-latest-keyc-http
+            servicePort: 80
+        - path: /
+          backend:
+            serviceName: angular-oauth2-svc
+            servicePort: 80

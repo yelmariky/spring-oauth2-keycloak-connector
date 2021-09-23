@@ -1,0 +1,13 @@
+server:
+    port: 8888
+    
+
+spring:
+    jackson:
+        serialization:
+            INDENT_OUTPUT: true
+    profiles:
+        active: local
+    data:
+      rest:
+        base-path: api
