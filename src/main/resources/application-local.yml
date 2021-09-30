@@ -1,13 +1,14 @@
 rest:
     security:
         issuer-uri: http://localhost/auth/realms/oauth2
+        client-id: spring-oauth2
         enabled: true
         api-matcher: /api/**
         cors:
             allowed-headers: '*'
             allowed-methods: GET,POST,PUT,PATCH,DELETE,OPTIONS
             allowed-origins: '*'
-            max-age: 3600  
+            max-age: 3600 
 spring:
   security:
     oauth2:
@@ -15,7 +16,7 @@ spring:
         jwt:
           issuer-uri: ${rest.security.issuer-uri}
           jwk-set-uri: ${rest.security.issuer-uri}/protocol/openid-connect/certs
- 
+
 security:
     oauth2:
         resource:
@@ -34,3 +35,10 @@ security:
             client-secret: 0ee00f3d-421e-4a61-97c7-4e03531730d6
             grant-type: client_credentials
             scope: openid
+springdoc:
+  swagger-ui:
+    oauth:
+      clientId: ${rest.security.client-id}
+  oAuthFlow:
+    authorizationUrl: ${rest.security.issuer-uri}/protocol/openid-connect/auth
+    tokenUrl: ${rest.security.issuer-uri}/protocol/openid-connect/token

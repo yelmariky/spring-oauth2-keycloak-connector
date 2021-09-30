@@ -14,3 +14,7 @@ docker build
 k apply -f ConfigMapk8s.yaml
 k apply -f deploy-oauth2-example-scope.yml
 k apply -f ingress-angular-keycloak.yml
+
+## to show all endpoint in swagger
+http://localhost:9000/manage/swaggerui and active cors in chrome  (red button  to be activated (C))
+(see chrome-extension://lhobafahddgcelffkeicbaginigeejlf/data/options/options.html)

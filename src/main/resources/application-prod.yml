@@ -1,6 +1,7 @@
 rest:
     security:
         issuer-uri: ${ISSUER_URI}/${REALM_NAME}
+        client-id: ${CLIENT-ID:xxxxx}
         enabled: true
         api-matcher: /api/**
         cors:
@@ -23,3 +24,10 @@ security:
             client-secret: ${APP_SECRET:xxxx}
             grant-type: client_credentials
             scope: openid
+springdoc:
+  swagger-ui:
+    oauth:
+      clientId: ${rest.security.client-id}
+  oAuthFlow:
+    authorizationUrl: ${rest.security.issuer-uri}/protocol/openid-connect/auth
+    tokenUrl: ${rest.security.issuer-uri}/protocol/openid-connect/token

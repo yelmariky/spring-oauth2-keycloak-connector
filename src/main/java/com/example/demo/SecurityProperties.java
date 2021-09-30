@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -61,6 +62,7 @@ public void setIssuerUri(String issuerUri) {
   public CorsConfiguration getCorsConfiguration() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
     corsConfiguration.setAllowedOrigins(cors.getAllowedOrigins());
+   // corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost/auth"));
     corsConfiguration.setAllowedMethods(cors.getAllowedMethods());
     corsConfiguration.setAllowedHeaders(cors.getAllowedHeaders());
     corsConfiguration.setExposedHeaders(cors.getExposedHeaders());

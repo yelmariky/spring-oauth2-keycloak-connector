@@ -4,8 +4,7 @@ import lombok.*;
 
 import javax.persistence.Id;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.GeneratedValue;
 
@@ -14,12 +13,12 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 
 @Entity
-@ApiModel("heroes")
+@Schema(name="heroes")
 @Data
 @NoArgsConstructor
 public class Heroes {
     @Id @GeneratedValue
-    @ApiModelProperty(hidden = true)
+    @Schema(hidden = true)
     private Long id;
     
     private @NonNull String nombre;

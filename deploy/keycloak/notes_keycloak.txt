@@ -1,0 +1,14 @@
+
+CALL http://localhost/auth/admin/oauth2/console/
+ you will redirected to login page with realm oauth2
+ use case
+ Use Case
+You might have two different Keycloak instance running: one for the external users (Keyloak-External)
+and another for the internal employees (Keycloak-Internal). Now you want to allow your employees 
+to also authenticate with external service without going for registering a new account the external Keycloak. 
+In such a scenario we can use External Keycloak as Broker and Internal Keycloak as Provider.
+
+you must CALL
+http://localhost/auth/admin/oauth2-externe/console/
+1- create oauth2-externe as Broker
+2- create idp ouath2 
